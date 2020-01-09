@@ -7,8 +7,7 @@ export const store = new Vuex.Store({
   state: {
     count: 0,
     users: [
-        {name: 'anuj'},
-        {name: 'bunty'}
+        {username: 'Milk Order', user_id: '3432-4njv-32c-2342'}
     ]
   },
   mutations: {
@@ -17,6 +16,13 @@ export const store = new Vuex.Store({
     },
     addNewUser (state, payload) {
       state.users.push(payload)
+    },
+    removeTodo(state, payload) {
+      state.users.filter((user, i) => {
+        if(user.user_id === payload.user_id){
+          state.users.splice(i, 1)
+        }
+      })
     }
   },
   actions: {
@@ -25,6 +31,9 @@ export const store = new Vuex.Store({
     },
     addNewUserAction ({commit}, payload) {
       commit('addNewUser', payload)
+    },
+    removeTodoAction ({commit}, payload) {
+      commit('removeTodo', payload)
     }
   },
   getters: {
